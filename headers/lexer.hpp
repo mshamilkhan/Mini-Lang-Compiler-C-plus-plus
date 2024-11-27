@@ -7,6 +7,7 @@
 #include <sstream>
 #include <iostream>
 #include <algorithm>
+using namespace std;
 
 enum type 
 {
@@ -46,11 +47,11 @@ enum type
 struct Token
 {
     enum type TYPE;
-    std::string VALUE;
+    string VALUE;
 };
 
 
-std::string typeToString(enum type TYPE)
+string typeToString(enum type TYPE)
 {
     switch(TYPE)
     {
@@ -92,7 +93,7 @@ std::string typeToString(enum type TYPE)
 class Lexer
 {
     public:
-    Lexer(std::string sourceCode)
+    Lexer(string sourceCode)
     {
         source = sourceCode;
         cursor = 0;
@@ -158,13 +159,13 @@ class Lexer
     }
 
 
-    std::vector <std::string> keywords = {"return" , "print" , "get","if" , "else" , "exit" , "clear" , "sleep"};
+    vector <string> keywords = {"return" , "print" , "get","if" , "else" , "exit" , "clear" , "sleep"};
 
-    std::unordered_map <std::string , std::string> translatables = {
+    unordered_map <string , string> translatables = {
     {"display" , "print"}
     };
 
-    std::unordered_map <std::string , enum type> convertibles = {
+    unordered_map <string , enum type> convertibles = {
     {"is" , TOKEN_EQUALS},
 	{"plus" , TOKEN_MATH},
 	{"minus" , TOKEN_MATH},
@@ -183,7 +184,7 @@ class Lexer
 
     Token * tokenizeID_KEYWORD()
     {
-        std::stringstream buffer;
+        stringstream buffer;
         buffer << advance(); 
 
         while (isAlnumWrapper() || current == '_')
@@ -197,20 +198,20 @@ class Lexer
         if (convertibles.find(newToken->VALUE) != convertibles.end())
 	        newToken->TYPE = convertibles[newToken->VALUE];  
         else
-            newToken->TYPE = (std::find(keywords.begin() , keywords.end() , newToken->VALUE) != keywords.end()) ? TOKEN_KEYWORD : TOKEN_ID;
+            newToken->TYPE = (find(keywords.begin() , keywords.end() , newToken->VALUE) != keywords.end()) ? TOKEN_KEYWORD : TOKEN_ID;
 
         return newToken;
     }
 
     Token * tokenizeSTRING()
     {
-        std::stringstream buffer;
+        stringstream buffer;
         
         while (current != '"')
         {
             if (current == '\0')
             {
-                std::cout << "[!] Lexer Error : Missing Quotes";
+                cout << "[!] Lexer Error : Missing Quotes";
                 exit(1);
             }
             buffer << advance();
@@ -227,7 +228,7 @@ class Lexer
     {
         Token * newToken = new Token();
         newToken->TYPE = TYPE;
-        newToken->VALUE = std::string(1 , advance());
+        newToken->VALUE = string(1 , advance());
 
 	    if (newToken->VALUE == "\n")
 		    newToken->VALUE = "\\n";
@@ -239,13 +240,13 @@ class Lexer
     {
 	    Token * newToken = new Token();
 	    newToken->TYPE = TOKEN_SEMICOLON;
-	    newToken->VALUE = std::to_string(scope);
+	    newToken->VALUE = to_string(scope);
 	    return newToken;
     }
     
     Token * tokenizeINT()
     {
-        std::stringstream buffer;
+        stringstream buffer;
 
         while (isdigit(current))
             buffer << advance();
@@ -256,9 +257,9 @@ class Lexer
         return newToken;
     }
     
-    std::vector<Token *> tokenize()
+    vector<Token *> tokenize()
     {
-        std::vector<Token *> tokens;
+        vector<Token *> tokens;
         bool notEOF = true;
         bool newLine = true;
 	    int scopeCounter;
@@ -328,7 +329,7 @@ class Lexer
 			        tokens.push_back(tokenizeSPECIAL(TOKEN_REL_NOTEQUALS));
 			        break;
 			        }
-			        std::cout << "[!] Syntax Error : unexpected symbol : " << seek(1) << " expected  : = " << std::endl;
+			        cout << "[!] Syntax Error : unexpected symbol : " << seek(1) << " expected  : = " << endl;
 			        exit(1);
 		        }
 			    case '[':
@@ -448,8 +449,8 @@ class Lexer
                 }
                 default:
                 {
-                    std::cout << "[!] LEXER ERROR : Unidentified symbol " << current <<std::endl ;
-                    std::cout << "LINE NUMBER : " << lineNumber << " CHARACTER NUMBER : " << characterNumber <<std::endl; 
+                    cout << "[!] LEXER ERROR : Unidentified symbol " << current <<endl ;
+                    cout << "LINE NUMBER : " << lineNumber << " CHARACTER NUMBER : " << characterNumber <<endl; 
                     exit(1);
                 }
                
@@ -468,7 +469,7 @@ class Lexer
     }
 
     private:
-    std::string source;
+    string source;
     int cursor;
     int size;
     char current;
