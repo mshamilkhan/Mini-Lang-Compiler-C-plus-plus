@@ -1,6 +1,6 @@
-<h1>PILOT PROGRAMMING LANGUAGE SYNTAX DOCUMENTATION</h1>
+<h1>Mini Lang PROGRAMMING LANGUAGE SYNTAX DOCUMENTATION</h1>
 
-*(The syntax of pilot programming language has very high resemblance to the english language , which makes it very easy to read and very beginner friendly)*
+*(The syntax of Mini Lang programming language has very high resemblance to the english language , which makes it very easy to read and very beginner friendly)*
 
 
 **COMMENTS**
@@ -30,7 +30,7 @@ The variable name has to start with either _ (underscore) or a character, but fu
 
 **ARRAYS**
 
-Pilot has support for multidimensional arrays.
+Mini Lang has support for multidimensional arrays.
 
 Creating a 1D array is as simple as the following syntax :
 
@@ -91,7 +91,7 @@ To print colored text onto the screen call the display sub function using the na
     display.blue   "this is a blue text"
     display.white  "this is a white text"
 Output:<br><br>
-![image](https://github.com/ary27x/pilot/assets/63790777/bf4d9903-7460-4aa7-80b5-f5f69e5d6fbc)
+![image](https://github.com/ary27x/Mini Lang/assets/63790777/bf4d9903-7460-4aa7-80b5-f5f69e5d6fbc)
 
 
 <hr>
@@ -107,13 +107,13 @@ For taking multiple inputs , the names of the corresponding variables has to be 
 
 **SCOPING**
 
-Scoping in Pilot is done using identation , not curly brace (similar to python).
+Scoping in Mini Lang is done using identation , not curly brace (similar to python).
 Statements with the same indentation have the same scope
 <hr>
 
 **FUNCTIONS**
 
-The general syntax of a function in pilot is as follows:
+The general syntax of a function in Mini Lang is as follows:
 
     function <function_name> :
         ~ code        
@@ -216,7 +216,7 @@ You also have the ability to assign an iterator for the loop.
     upper is 20
     range lower to upper as i:
         display "This is the value of i : " , i ~ this would print the numbers from 10 to 20
-Pilot also has support for complex nested loop.
+Mini Lang also has support for complex nested loop.
 
 Here is an example program to check for prime numbers in a given range:
 
@@ -232,13 +232,13 @@ Here is an example program to check for prime numbers in a given range:
        else: 
              display.green "NOT PRIME    : " , number
 Output:<br><br>
-![image](https://github.com/ary27x/pilot/assets/63790777/a58883fe-7cab-477c-a515-b86e57e56fc6)
+![image](https://github.com/ary27x/Mini Lang/assets/63790777/a58883fe-7cab-477c-a515-b86e57e56fc6)
 
 <hr>
 
 **IF ELSE** 
 
-Pilot programming language follows the basic construct of if else.
+Mini Lang programming language follows the basic construct of if else.
 Syntax :
 
     if <condition>:
@@ -269,7 +269,7 @@ Following is an example of getting two numbers from the user and printing the la
 
 **MATHEMATICS**
 
-Pilot has the ability to perform basic mathematical operations using the following mathematical operators.
+Mini Lang has the ability to perform basic mathematical operations using the following mathematical operators.
 
     result is first + second ~ addition operation
     result is first - second ~ subtraction operation
@@ -282,7 +282,7 @@ You can also chain the mathematical operators in the following manner:
 
     result is first + second * third / fourth - fifth
 
-Pilot also employs translatable keywords for maths , which gets converted to mathematical operators.
+Mini Lang also employs translatable keywords for maths , which gets converted to mathematical operators.
 
 List of all such translatable keyword :
 
